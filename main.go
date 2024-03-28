@@ -55,9 +55,10 @@ func (v *VideoConverter) GetVideoDirs() (err error) {
 
 // 遍历每个视频目录,获取视频文件名称,并转换M4S为MP4文件
 func (v *VideoConverter) ConverterVideo() (err error) {
-	for _, dir := range v.PathVideoDirs {
+	for index, dir := range v.PathVideoDirs {
+		fmt.Printf("[%v]开始转换任务%v", index+1, dir)
 		video_info, _ := v.GetVideoInfo(dir + v.PathSeparator + "entry.json")
-		output_video_name := video_info.OwnerName + "-" + video_info.Title + ".mp4"
+		output_video_name := video_info.OwnerName + "-" + video_info.Title
 		v.ConverterM4sToMp4(dir, output_video_name)
 	}
 	return
@@ -102,7 +103,7 @@ func (v *VideoConverter) ConverterM4sToMp4(path_input string, output_video_name 
 
 	path_video := path_input + v.PathSeparator + "video.m4s"
 	path_audio := path_input + v.PathSeparator + "audio.m4s"
-	path_output := v.PathOutput + v.PathSeparator + v.FilterVideoTitle(output_video_name)
+	path_output := v.PathOutput + v.PathSeparator + v.FilterVideoTitle(output_video_name) + ".mp4"
 
 	args := []string{
 		"-i", path_video,
@@ -119,6 +120,8 @@ func (v *VideoConverter) ConverterM4sToMp4(path_input string, output_video_name 
 
 	if err := cmd.Start(); err != nil {
 		fmt.Printf("执行FFmpeg命令失败: %s", err)
+	} else {
+		fmt.Printf("[+]转换完成%v\n", path_output)
 	}
 
 	return
@@ -136,6 +139,7 @@ func (v *VideoConverter) FilterVideoTitle(title string) (result string) {
 	title = strings.ReplaceAll(title, "*", "_")
 	title = strings.ReplaceAll(title, "【", "[")
 	title = strings.ReplaceAll(title, "】", "]")
+	title = strings.ReplaceAll(title, "！", "!")
 	title = strings.TrimSpace(title)
 	return title
 }
