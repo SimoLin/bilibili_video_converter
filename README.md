@@ -1,6 +1,7 @@
 # bilibili_video_converter
 
-一个简单的 哔哩哔哩 APP 缓存视频批量转码脚本
+一个简单的 哔哩哔哩 bilibili APP 缓存视频 批量转码脚本工具(m4s 转 mp4)
+即将 video.m4s 与 audio.m4s 合并转码为一个 video.mp4
 
 # 原理说明
 
