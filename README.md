@@ -33,7 +33,7 @@ https://ffmpeg.org/download.html
 # 创建 output 文件夹(若不存在)
 ```
 
-![复制download文件夹](https://raw.github.com/SimoLin/repositpry/master/bilibili_video_converter/image/download.png)
+![复制download文件夹](https://github.com/SimoLin/bilibili_video_converter/blob/main/image/download.png)
 
 3、使用本脚本进行批量视频转码
 

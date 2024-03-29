@@ -4,3 +4,5 @@ ffmpeg.exe
 *.exe
 download
 output
+.vscode
+go.mod
