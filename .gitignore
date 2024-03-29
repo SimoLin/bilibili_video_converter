@@ -1,8 +1,8 @@
+.vscode
+go.mod
 ffmpeg.exe
 *.zip
 *.mp4
 *.exe
 download
 output
-.vscode
-go.mod
