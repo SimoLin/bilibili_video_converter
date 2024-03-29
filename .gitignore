@@ -1,4 +1,6 @@
 ffmpeg.exe
 *.zip
-download
 *.mp4
+*.exe
+download
+output

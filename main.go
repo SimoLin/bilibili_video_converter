@@ -58,6 +58,7 @@ func (v *VideoConverter) ConverterVideo() (err error) {
 	for index, dir := range v.PathVideoDirs {
 		fmt.Printf("[%v]开始转换任务%v", index+1, dir)
 		video_info, _ := v.GetVideoInfo(dir + v.PathSeparator + "entry.json")
+		// 默认输出文件名为 UP主用户名-视频名称
 		output_video_name := video_info.OwnerName + "-" + video_info.Title
 		v.ConverterM4sToMp4(dir, output_video_name)
 	}
@@ -86,6 +87,7 @@ func (v *VideoConverter) GetVideoInfo(path_json string) (video_info *VideoInfo, 
 func (v *VideoConverter) ConverterM4sToMp4(path_input string, output_video_name string) (err error) {
 
 	flag_path_correct := false
+	// 尝试读取80和64文件夹下的m4s文件
 	for _, child_path := range []string{"80", "64"} {
 		temp_path := path_input + v.PathSeparator + child_path
 		_, err = os.ReadDir(temp_path)
@@ -127,7 +129,7 @@ func (v *VideoConverter) ConverterM4sToMp4(path_input string, output_video_name 
 	return
 }
 
-// 将视频标题特殊字符进行转换
+// 将视频标题中包含的特殊字符进行转换，否则容易导出不了
 func (v *VideoConverter) FilterVideoTitle(title string) (result string) {
 	title = strings.ReplaceAll(title, "<", "《")
 	title = strings.ReplaceAll(title, ">", "》")
@@ -146,9 +148,11 @@ func (v *VideoConverter) FilterVideoTitle(title string) (result string) {
 
 func main() {
 
-	// 路径参数
+	// ffmpeg.exe的路径，默认放同个目录下
 	path_ffmpeg := "ffmpeg.exe"
+	// 缓存视频文件的文件夹
 	path_cache := "download"
+	// 输出视频文件的文件夹(若不存在请新建一下)
 	path_video_output := "output"
 
 	video_converter := NewVideoConverter(path_ffmpeg, path_cache, path_video_output)
