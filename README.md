@@ -46,7 +46,9 @@ https://ffmpeg.org/download.html
 go run main.go
 ```
 
-4、当然，你也可以使用 ffmpeg.exe 进行单个视频转码
+# 附录
+
+1、当然，你也可以使用 ffmpeg.exe 进行单个视频转码
 
 ```
 # 直接使用 CMD 执行以下命令
@@ -56,6 +58,8 @@ go run main.go
 .\fffmpeg.exe -i download\152348569\c1514563463\80\video.m4s -i download\152348569\c1514563463\80\audio.m4s -c:v copy -c:a copy -strict experimental -y output\输出视频.mp4 -hide_banner -stats
 
 ```
+
+> 转码后的 mp4 视频如果播放有问题，推荐使用 PotPlayer(电脑)/MXPlayer(手机)并使用软解模式
 
 # 特别鸣谢/参考项目
 
