@@ -46,6 +46,19 @@ https://ffmpeg.org/download.html
 go run main.go
 ```
 
+# v1.0.1 版本更新
+
+- 现在可以正确识别普通视频、分片视频合集、番剧等类型
+- 现在导出后会等待 10S 再开始重命名视频文件为中文，同时会分文件夹存放
+  - 普通视频、分片视频合集 文件夹以 UP主 为名称，文件命名格式为 Title视频名称_分片Index_分片名称IndexTitle.mp4
+  - 番剧 以 番剧标题 为名称，文件命名格式为 分片Index_分片名称IndexTitle.mp4
+
+![output](https://github.com/SimoLin/bilibili_video_converter/blob/main/image/output.png)
+![番剧](https://github.com/SimoLin/bilibili_video_converter/blob/main/image/fanju.png)
+![视频](https://github.com/SimoLin/bilibili_video_converter/blob/main/image/shipin.png)
+
+
+
 # 附录
 
 1、当然，你也可以使用 ffmpeg.exe 进行单个视频转码
