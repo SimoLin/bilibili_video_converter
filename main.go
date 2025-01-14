@@ -11,6 +11,18 @@ import (
 	"github.com/elastic/elastic-agent-libs/mapstr"
 )
 
+var list_all_video_quality = []string{"120", "116", "112", "80", "64", "32", "16"}
+
+// var dict_all_video_quality = map[string]string{
+// 	"120": "4K(超清)",
+// 	"116": "1080P(60帧)",
+// 	"112": "1080P(高码率)",
+// 	"80":  "1080P(高清)",
+// 	"64":  "720P(高清)",
+// 	"32":  "480P(清晰)",
+// 	"16":  "360P(流畅)",
+// }
+
 type VideoInfo struct {
 	Type       string
 	AVID       string
@@ -177,8 +189,7 @@ func ValueInSlice[T comparable](target T, array_list []T) bool {
 func (v *VideoConverter) ConverterM4sToMp4(input_video_path string, output_video_name string) (err error) {
 
 	flag_path_correct := false
-	// 64,80,112 不同文件夹代表不同视频质量
-	for _, child_path := range []string{"80", "64", "112"} {
+	for _, child_path := range list_all_video_quality {
 		temp_path := input_video_path + v.PathSeparator + child_path
 		_, err = os.ReadDir(temp_path)
 		if err == nil {
